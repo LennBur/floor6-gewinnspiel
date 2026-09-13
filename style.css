@@ -9,6 +9,7 @@
   --muted:   #8c8c8c;
   --faint:   #5a5a5a;
   --line:    #242424;
+  --accent:  #ff3b30;
 
   --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -109,6 +110,10 @@ body {
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
+}
+
+.prize__value--accent {
+  color: var(--accent);
 }
 
 /* ---------- Eyebrow-Labels ---------- */
