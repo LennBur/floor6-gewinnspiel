@@ -1,0 +1,266 @@
+/* FLOOR6 — Monatliches Gewinnspiel
+   Statische Seite, keine externen Abhängigkeiten.
+   Bewusst einheitlich dunkel (Studio-Look), unabhängig vom System-Theme. */
+
+:root {
+  --ground:  #000000;
+  --panel:   #0d0d0d;
+  --ink:     #ffffff;
+  --muted:   #8c8c8c;
+  --faint:   #5a5a5a;
+  --line:    #242424;
+
+  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Grundraster ---------- */
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 7vw, 2.75rem);
+  width: 100%;
+  max-width: 27rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 6vw, 2.5rem);
+  padding-block: clamp(2.5rem, 11vw, 4rem) 3rem;
+}
+
+/* ---------- Logo ---------- */
+
+.masthead {
+  display: flex;
+  justify-content: center;
+  padding-block-end: clamp(0.25rem, 2vw, 1rem);
+}
+
+.logo {
+  display: block;
+  width: clamp(9.5rem, 46vw, 13rem);
+  height: auto;
+  max-width: 100%;
+}
+
+/* ---------- Headline ---------- */
+
+.title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  text-wrap: balance;
+}
+
+.title__brand {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.title__main {
+  font-size: clamp(2.1rem, 11vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+/* ---------- Preis: das einzige hervorgehobene Element ---------- */
+
+.prize {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.prize__label {
+  margin: 0 0 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.prize__value {
+  margin: 0;
+  font-size: clamp(1.75rem, 8.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Eyebrow-Labels ---------- */
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow--quiet { color: var(--faint); }
+
+/* ---------- Ablauf ---------- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.steps__list {
+  counter-reset: step;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 2.5rem;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+.steps__list > li {
+  position: relative;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  counter-increment: step;
+}
+
+/* Zähler sitzt auf der Schiene — Kanalzug-Anmutung */
+.steps__list > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: -2.5rem;
+  top: 0.1em;
+  width: 2.5rem;
+  padding-left: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.steps__note {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ---------- Button ---------- */
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--ink);
+  color: var(--ground);
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.cta:hover,
+.cta:active {
+  background: var(--ground);
+  color: var(--ink);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------- Trennlinie ---------- */
+
+.rule {
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Kleingedrucktes ---------- */
+
+.fineprint {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.fineprint ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.fineprint ul > li {
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.fineprint ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.35rem;
+  height: 1px;
+  background: var(--faint);
+}
+
+.fineprint p { margin: 0; }
+
+.disclaimer {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  color: var(--faint);
+}
+
+.disclaimer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
